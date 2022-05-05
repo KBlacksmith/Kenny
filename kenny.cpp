@@ -39,6 +39,7 @@ int main(int argc, char * argv[]){
 				for(token * t: lexer(&input)){
 					std::cout << "[" << t->type << ", " << t->value << "], ";
 				}
+				std::cout << '\n';
 			}
 			std::cout << "basic > ";
 		}
