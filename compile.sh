@@ -2,4 +2,4 @@
 clear
 echo "Compiling"
 echo "---------------"
-g++ -std=c++2a *.cpp -o /home/kenneth/Applications/bin/kenny
+g++ -std=c++2a *.cpp -o $APPS/bin/kenny
