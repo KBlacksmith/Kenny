@@ -24,8 +24,27 @@ std::string getString(char quote, std::string sub){
 std::string getNumber(std::string sub){
 	std::string num;
 	int p = 0;
+	bool floating = false;
+	while (p < sub.length())
+	{
+		if(std::regex_match(sub.substr(p, 1), std::regex("[.]|[0-9]"))){
+			if(sub.at(p)=='.' && floating){
+				return num;
+			}
+			else if(sub.at(p)=='.'){
+				floating = true;
+			}
+			num.push_back(sub.at(p));
+			p++;
+		}
+		else
+			return num;
+	}
+	
+	/*
 	num.push_back(sub.at(p));
 	p++;
+	bool decimal = false;
 	while (p<sub.length()){
 		if(std::regex_match(sub.substr(p, 1), std::regex("[.]|[0-9]"))){
 			num.push_back(sub.at(p));
@@ -34,6 +53,7 @@ std::string getNumber(std::string sub){
 		else
 			return num;
 	}
+	*/
 	return num;
 }
 
@@ -55,7 +75,6 @@ std::string getSymbol(std::string sub){
 }
 
 std::vector<token *> lexer(std::string *input){
-	//input->push_back('\0');
 	std::vector<token *> tokens;
 	std::string word = "";
 	int pos = 0;
@@ -90,7 +109,7 @@ std::vector<token *> lexer(std::string *input){
 			else
 				return {};
 		}
-		else if(std::string(".0123456789").find(input->at(pos))!=std::string::npos){
+		else if(std::string("0123456789").find(input->at(pos))!=std::string::npos){
 			word = getNumber(input->substr(pos));
 			tokens.push_back(tokenize("NUM", word));
 			pos += word.length();
@@ -103,10 +122,19 @@ std::vector<token *> lexer(std::string *input){
 			word = "";
 		}
 		else if(input->at(pos)=='\t'){
-			std::cout << "Tabs are not allowed";
+			std::cout << "Error: Tabs are not allowed";
 			return {};
 		}
 		else{
+			std::cout << "Error: ";
+			for(int i = 0; i<=pos; i++){
+				std::cout << input->at(i);
+			}
+			std::cout << "\n";
+			for(int i = 0; i<pos+7; i++){
+				std::cout << " ";
+			}
+			std::cout << "^\n";
 			std::cout << "Unexpected '" << input->at(pos) << "' character";
 			return {};
 		}
