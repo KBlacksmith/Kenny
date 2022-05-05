@@ -1,21 +1,8 @@
 #include <string>
 #include <vector>
-#include <map>
 #include <regex>
 #include <iostream>
-
-struct token
-{
-	std::string type;
-	std::string value;
-};
-
-token * tokenize(std::string type, std::string value){
-	token * new_token = new token;
-	new_token->type.assign(type);
-	new_token->value.assign(value);
-	return new_token;
-}
+#include "include/tokens.hpp"
 
 std::string getString(char quote, std::string sub){
 	std::string word;

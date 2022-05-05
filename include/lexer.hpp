@@ -1,17 +1,6 @@
 #include <string>
 #include <vector>
-//#include <map>
-//#include <regex>
-//#include <iostream>
-
-struct token
-{
-	std::string type;
-	std::string value;
-};
-
-token * tokenize(std::string type, std::string value);
-
+#include "tokens.hpp"
 std::string getString(char quote, std::string sub);
 
 std::string getNumber(std::string sub);
