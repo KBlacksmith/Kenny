@@ -63,7 +63,21 @@ std::string str(){
     return "";
 }
 
-void evaluate(std::vector<token *> parsed_tokens){
+bool evaluate(std::vector<token *> parsed_tokens){
     std::vector<token *> aux;
-    bool end_instruction = false;
+    /*
+    for(auto t: parsed_tokens){
+        if(t->type.compare(";")==0){
+            for(auto a: aux){
+                std::cout << a->value << " ";
+            }
+            std::cout << "\n";
+            aux = {};
+        }
+        else{
+            aux.push_back(t);
+        }
+    }
+    */
+   return false;
 }

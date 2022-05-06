@@ -26,6 +26,7 @@ void trimmer(std::string * input){
 
 int main(int argc, char * argv[]){
 	std::string input = "";
+	bool exit;
 	switch (argc)
 	{
 	case 1:
@@ -41,12 +42,20 @@ int main(int argc, char * argv[]){
 				}
 				std::cout << '\n';
 				*/
+				/*
 				for(auto p: parse(lexer(&input))){
 					std::cout << p->value << " ";
 				}
+				*/
 				//evaluate(parse(lexer(&input)));
+				exit = evaluate(parse(lexer(&input)));
 			}
-			std::cout << "\nbasic > ";
+			if(exit){
+				break;
+			}
+			else{
+				std::cout << "\nbasic > ";
+			}
 		}
 		std::cout << "Oh my God, You Killed Kenny! You Bastard!\n";
 	}

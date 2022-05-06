@@ -1,3 +1,3 @@
 #include <vector>
 
-void evaluate(std::vector<token *> parsed_tokens);
+bool evaluate(std::vector<token *> parsed_tokens);

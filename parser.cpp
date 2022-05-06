@@ -5,7 +5,6 @@
 std::vector<token *> parse(std::vector<token *> tokens){
     std::vector<token *> op_stack;
     std::vector<token *> postfix_stack;
-    //token * aux;
     int h = 5;
     std::map<char, int> hierarchy = {{'+', 2}, {'-', 2}, {'*', 3}, {'/', 3}, {'%', 3}, {'^', 4}, {'(', 1}, {'=', 0}};
     std::map<std::string, int> functions = {{"print", h}, {"str", h}, {"exit", h}, {"clear", h}};
@@ -75,8 +74,14 @@ std::vector<token *> parse(std::vector<token *> tokens){
             t->hierarchy = -1;
             while (!op_stack.empty())
             {
-                postfix_stack.push_back(op_stack.back());
-                op_stack.pop_back();
+                if(op_stack.back()->type.compare("(")!=0){
+                    postfix_stack.push_back(op_stack.back());
+                    op_stack.pop_back();
+                }
+                else{
+                    std::cout << "1Missing ')'";
+                    return {};
+                }
             }
             postfix_stack.push_back(t);
         }
@@ -88,7 +93,7 @@ std::vector<token *> parse(std::vector<token *> tokens){
             op_stack.pop_back();
         }
         else{
-            std::cout << "Missing ')'";
+            std::cout << "2Missing ')'";
             return {};
         }
     }
