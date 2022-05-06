@@ -2,6 +2,7 @@
 #include <string>
 #include <regex>
 #include "include/lexer.hpp"
+#include "include/parser.hpp"
 
 
 void trimmer(std::string * input){
@@ -30,14 +31,15 @@ int main(int argc, char * argv[]){
 		std::cout << "basic > ";
 		while (getline(std::cin, input))
 		{	
-			trimmer(&input);
-			if(input.compare("clear")==0)
-				system("clear");
-			else if(input.compare("exit")==0)
-				break;
-			else if(!input.empty()){
+			if(!input.empty()){
+				std::cout << "TOKENS: ";
 				for(token * t: lexer(&input)){
 					std::cout << "[" << t->type << ", " << t->value << "], ";
+				}
+				std::cout << '\n';
+				std::cout << "PARSER: ";
+				for(token *p: parse(lexer(&input))){
+					std::cout << p->value << " ";
 				}
 				std::cout << '\n';
 			}
