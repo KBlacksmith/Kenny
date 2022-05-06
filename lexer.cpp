@@ -40,20 +40,6 @@ std::string getNumber(std::string sub){
 		else
 			return num;
 	}
-	
-	/*
-	num.push_back(sub.at(p));
-	p++;
-	bool decimal = false;
-	while (p<sub.length()){
-		if(std::regex_match(sub.substr(p, 1), std::regex("[.]|[0-9]"))){
-			num.push_back(sub.at(p));
-			p++;
-		}
-		else
-			return num;
-	}
-	*/
 	return num;
 }
 
@@ -86,7 +72,7 @@ std::vector<token *> lexer(std::string *input){
 		{
 			pos++;
 		}
-		else if(std::string("+-*/").find(input->at(pos))!=std::string::npos){
+		else if(std::string("+-*/^%").find(input->at(pos))!=std::string::npos){
 			word.push_back(input->at(pos));
 			tokens.push_back(tokenize("OPERATOR", word));
 			word = "";
@@ -95,14 +81,14 @@ std::vector<token *> lexer(std::string *input){
 		else if(std::string("(){},;=:").find(input->at(pos))!=std::string::npos)
 		{
 			word.push_back(input->at(pos));
-			tokens.push_back(tokenize(word, ""));
+			tokens.push_back(tokenize(word, word));
 			word = "";
 			pos++;
 		}
 		else if(std::string("'\"").find(input->at(pos))!=std::string::npos){
 			word = getString(input->at(pos), input->substr(pos));
-			if(word.compare("")){
-				tokens.push_back(tokenize("STR", word));
+			if(word.compare("")!=0){
+				tokens.push_back(tokenize("STR", word.substr(1, word.length()-2)));
 				pos+=word.length();
 				word = "";
 			}

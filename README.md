@@ -22,11 +22,9 @@ PARSER:
         * OPERATIONS: 
             MATH: 
                 FIRST -> NUM
-                SECOND -> SYMBOL
+                SECOND -> OPERATOR
             CONCAT: 
-                IF FIRST->STRING: 
-                    SECOND->STRING OR NUM
-                ELSE IF FIRST -> NUM: 
-                    SECOND -> STRING
+                IF -> STRING
+                SECOND -> PLUS
         * FUNCTION CALLS
         * FUNCTION DEFINITIONS
