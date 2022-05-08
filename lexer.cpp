@@ -72,7 +72,7 @@ std::vector<token *> lexer(std::string *input){
 		{
 			pos++;
 		}
-		else if(std::string("+-*/^%").find(input->at(pos))!=std::string::npos){
+		else if(std::string("+-*/^").find(input->at(pos))!=std::string::npos){//To add %
 			word.push_back(input->at(pos));
 			tokens.push_back(tokenize("OPERATOR", word));
 			word = "";

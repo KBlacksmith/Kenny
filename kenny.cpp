@@ -11,22 +11,18 @@ void trimmer(std::string * input){
 	int start = 0, end = input->length();
 	while (input->substr(start, end).starts_with(" "))
 	{
-		//std::cout << "'" << input->substr(start, end) << "'\n";
 		start++;
 		end--;
 	}
 	while (input->substr(start, end-start).ends_with(" "))
 	{
-		//std::cout << "'" << input->substr(start, end-start) << "'\n";
 		end--;
 	}
-	//std::cout << "'" << input->substr(start, end-start) << "'\n";
-	
 }
 
 int main(int argc, char * argv[]){
 	std::string input = "";
-	bool exit;
+	bool exit = false;
 	switch (argc)
 	{
 	case 1:
@@ -36,18 +32,6 @@ int main(int argc, char * argv[]){
 		{	
 			trimmer(&input);
 			if(!input.empty()){
-				/*
-				for(token * t: lexer(&input)){
-					std::cout << "[" << t->type << ", " << t->value << "], ";
-				}
-				std::cout << '\n';
-				*/
-				/*
-				for(auto p: parse(lexer(&input))){
-					std::cout << p->value << " ";
-				}
-				*/
-				//evaluate(parse(lexer(&input)));
 				exit = evaluate(parse(lexer(&input)));
 			}
 			if(exit){
