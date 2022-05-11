@@ -16,7 +16,7 @@ std::vector<token *> parse(std::vector<token *> tokens){
         std::cout << "\nPOSTFIX STACK: ";
         for(auto aux: postfix_stack){
             std::cout << aux->value << ", ";
-        }c
+        }
         */
         if(t->type.compare("NUM") == 0){
             postfix_stack.push_back(t);
@@ -51,19 +51,12 @@ std::vector<token *> parse(std::vector<token *> tokens){
             else{
                 while (!op_stack.empty())
                 {
-                    if(op_stack.back()->value.compare("(") != 0){
-                        if(hierarchy[t->value.at(0)] <= hierarchy[op_stack.back()->value.at(0)]){
-                            postfix_stack.push_back(op_stack.back());
-                            op_stack.pop_back();
-                        }
-                        else{
-                            break;
-                        }
+                    if(hierarchy[t->value.at(0)] <= hierarchy[op_stack.back()->value.at(0)]){
+                        postfix_stack.push_back(op_stack.back());
+                        op_stack.pop_back();
                     }
-                    else{
-                        std::cout << "Missing ')'\n";
-                        return {};
-                    }
+                    else
+                        break;
                 }
                 op_stack.push_back(t);
             }
