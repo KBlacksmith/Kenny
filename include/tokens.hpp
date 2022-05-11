@@ -3,7 +3,6 @@ struct token
 {
 	std::string type;
 	std::string value;
-	int hierarchy;
 };
 
 

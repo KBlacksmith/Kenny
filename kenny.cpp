@@ -22,7 +22,6 @@ void trimmer(std::string * input){
 
 int main(int argc, char * argv[]){
 	std::string input = "";
-	bool exit = false;
 	switch (argc)
 	{
 	case 1:
@@ -32,20 +31,23 @@ int main(int argc, char * argv[]){
 		{	
 			trimmer(&input);
 			if(!input.empty()){
-				exit = evaluate(parse(lexer(&input)));
+				//evaluate(parse(lexer(&input)));
+				for(auto t: lexer(&input)){
+					std::cout << "[" << t->type << ", " << t->value << "], ";
+				}
+				std::cout << std::endl;
+				for(auto t: parse(lexer(&input))){
+					std::cout << t->value << " ";
+				}
 			}
-			if(exit){
-				break;
-			}
-			else{
-				std::cout << "\nbasic > ";
-			}
+			std::cout << "\nbasic > ";
 		}
 		std::cout << "Oh my God, You Killed Kenny! You Bastard!\n";
 	}
 		break;
 	case 2: 
 	{
+		/*
 		if(std::regex_match(std::string(argv[1]), std::regex("[a-zA-Z][_a-zA-Z0-9]*[.]ken"))){
 			//std::string file_name = argv[1];
 			std::ifstream ken_file(std::string(argv[1]).data());
@@ -57,6 +59,7 @@ int main(int argc, char * argv[]){
 			}
 			std::cout << '\n';
 		}
+		*/
 	}
 	break;
 	default:

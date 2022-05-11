@@ -68,7 +68,7 @@ std::string power(float a, float b){
     return std::to_string(p);
 }
 
-bool evaluate(std::vector<token *> parsed_tokens){
+void evaluate(std::vector<token *> parsed_tokens){
     std::vector<token *> aux;
     std::vector<token *> temp;
     token * helper;
@@ -117,5 +117,5 @@ bool evaluate(std::vector<token *> parsed_tokens){
         }
         pos++;
     }
-    return false;
+    return;
 }
